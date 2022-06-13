@@ -5,27 +5,23 @@ class Solution(object):
         :rtype: List[List[int]]
         """
         
-        if len(intervals) == 1:
-          return [intervals[0]]
-              
-        intervals.sort(key=lambda x:x[0])
+        # predefined constant for start (left endpoint), and end (right endpoint)
+        START, END = 0, 1
         
-        res = []
-        prev = intervals[0]
+        result = []
         
-        for i in range(1, len(intervals)):
-          curr = intervals[i]
-          
-          if prev[1] >= curr[0]:
-            prev[1] = max(curr[1], prev[1])
-          else:
-            res.append(prev)
-            prev = curr
-            
-          if i == len(intervals)-1:
-              res.append(prev)
-            
+        # make all intervals sorted on (left endpoint, right endpoint) pair in ascending order
+        intervals.sort( key = lambda x: (x[START], x[END] ) ) 
         
-          
+        for interval in intervals:
             
-        return res
+            if not result or ( result[-1][END] < interval[START] ):
+				# no overlapping
+                result.append( interval )
+            
+            else:
+				# has overlapping
+				# merge with previous interval
+                result[-1][END] = max(result[-1][END], interval[END])
+                
+        return result
