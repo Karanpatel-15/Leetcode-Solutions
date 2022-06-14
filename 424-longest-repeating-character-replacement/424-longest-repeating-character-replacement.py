@@ -15,8 +15,7 @@ class Solution(object):
           
           lmap[letter] = lmap.get(letter, 0) + 1
           
-          if (r-l+1) - max(lmap.values()) > k:
-            while (r-l+1) - max(lmap.values()) > k:
+          while (r-l+1) - max(lmap.values()) > k:
               lmap[s[l]] -= 1
               l+=1
           res = max(res, (r-l+1))
