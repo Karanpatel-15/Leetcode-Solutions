@@ -5,17 +5,20 @@ class Solution(object):
         :type k: int
         :rtype: int
         """
+        
+        res = 1
+        lmap = {}
         l = 0
-        counter = {}
-        res = 0
+        
         for r in range(len(s)):
-          counter[s[r]] = 1 + counter.get(s[r], 0)
+          letter = s[r]
           
-          while (r-l+1) - max(counter.values()) > k:
-            counter[s[l]] -= 1
-            l+=1
+          lmap[letter] = lmap.get(letter, 0) + 1
           
+          if (r-l+1) - max(lmap.values()) > k:
+            while (r-l+1) - max(lmap.values()) > k:
+              lmap[s[l]] -= 1
+              l+=1
           res = max(res, (r-l+1))
-          
         return res
             
