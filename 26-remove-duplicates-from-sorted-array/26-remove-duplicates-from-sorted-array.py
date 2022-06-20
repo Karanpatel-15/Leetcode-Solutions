@@ -4,9 +4,9 @@ class Solution(object):
         :type nums: List[int]
         :rtype: int
         """
-        x = 1
+        l = 1
         for i in range(len(nums)-1):
           if(nums[i]!=nums[i+1]):
-            nums[x] = nums[i+1]
-            x+=1
-        return(x)
+            nums[l] = nums[i+1]
+            l+=1
+        return(l)
