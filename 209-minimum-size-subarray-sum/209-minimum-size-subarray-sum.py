@@ -20,22 +20,4 @@ class Solution(object):
         if m != float("inf"):
           return m
         else:
-          return 0          
-            
-            
-#             if total >= target:
-#               m = r - l + 1
-            
-#             if total >= target:
-#               l+=1
-#               total -= nums[l]
-#             elif total < target:
-#               r+=1
-#               total += nums[l]
-
-
-            
-            
-          
-          
-        
+          return 0         
