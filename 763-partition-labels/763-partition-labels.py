@@ -5,20 +5,21 @@ class Solution(object):
         :rtype: List[int]
         """
         
-        lastPos = {}
-        
+        last = {}
         for i, l in enumerate(s):
-          lastPos[l] = i
+          last[l] = i
         
+        size = end = 0
         res = []
-        end = lastPos[s[0]]
-        size = start = 0
-        for i, l in enumerate(s):
+        
+        for i in range(len(s)):
           size += 1
-          end = max(end, lastPos[l])
+          end = max(end, last[s[i]])
+
           if i == end:
             res.append(size)
             size = 0
+          
           
         return res
         
