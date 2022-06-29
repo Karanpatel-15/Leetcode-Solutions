@@ -23,7 +23,7 @@ class Solution(object):
         res = 0
         for r in range(ROWS):
           for c in range(COLS):
-            result = dfs(r,c)
-            res += result
+            if grid[r][c] == "1" and (r,c) not in visited:
+              res += dfs(r,c)
                       
         return res
