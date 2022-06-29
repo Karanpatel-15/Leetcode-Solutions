@@ -4,33 +4,27 @@ class Solution(object):
         :type grid: List[List[str]]
         :rtype: int
         """
-
-        if not grid:
-          return 0
         
         ROWS, COLS = len(grid), len(grid[0])
-        res = 0
+        
         visited = set()
         
-        def dfs(r,c):
-          if (r < 0 or c < 0 or 
-              r >= ROWS or c >= COLS or
-              grid[r][c] == "0" or 
-             (r, c) in visited):
-            return False
+        def dfs(r, c):
+          if (r,c) in visited or r < 0 or c < 0 or r >= ROWS or c >= COLS or grid[r][c] == "0":
+            return 0
           visited.add((r,c))
-          dfs(r+1,c)
-          dfs(r-1,c)
-          dfs(r,c+1)
-          dfs(r,c-1)
-          return True
+          dfs(r+1, c)
+          dfs(r-1, c)
+          dfs(r, c+1)
+          dfs(r, c-1)
+          
+          return 1
         
+        res = 0
         for r in range(ROWS):
           for c in range(COLS):
-            if (r, c) not in visited and grid[r][c] == "1":
-              dfs(r, c)
-              res += 1
-        
+            result = dfs(r,c)
+            print(result)
+            res += result
+                      
         return res
-        
-        
