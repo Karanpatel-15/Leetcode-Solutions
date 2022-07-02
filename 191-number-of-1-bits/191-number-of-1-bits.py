@@ -4,10 +4,11 @@ class Solution(object):
         :type n: int
         :rtype: int
         """
-        
-        counter = 0
-        
-        for i in range(32):
-          counter += (n >> i) & 1
+        res = 0
+        while n != 0:
+          if n & 1 == 1:
+            res += 1
+          n = n >> 1
           
-        return counter
+        return res
+        
