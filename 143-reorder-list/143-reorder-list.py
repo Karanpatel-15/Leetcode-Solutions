@@ -31,10 +31,8 @@ class Solution(object):
               l2 = l2.next
               curr = curr.next
               curr.next = l1
-              curr = curr.next
+              curr = l1
               
-            
-          
         slow = fast = head
         
         while fast.next and fast.next.next:
