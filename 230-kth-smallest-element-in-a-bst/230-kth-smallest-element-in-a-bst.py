@@ -16,7 +16,7 @@ class Solution(object):
         curr = root
         counter = 0
         
-        while curr or stack:
+        while True:
           while curr:
             stack.append(curr)
             curr=curr.left
