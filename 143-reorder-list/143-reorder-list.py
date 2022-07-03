@@ -9,27 +9,41 @@ class Solution(object):
         :type head: ListNode
         :rtype: None Do not return anything, modify head in-place instead.
         """
-          
-        #step 1: find middle
-        if not head: return []
-        slow, fast = head, head
-        while fast.next and fast.next.next:
-            slow = slow.next
-            fast = fast.next.next
         
-        #step 2: reverse second half
-        prev, curr = None, slow.next
-        while curr:
-            nextt = curr.next
+        def reverseList(head):  
+          prev = None
+          curr = head
+          while curr:
+            post = curr.next
             curr.next = prev
             prev = curr
-            curr = nextt    
-        slow.next = None
+            curr = post
+          
+          return prev
+            
+            
+            
+        def mergeList(l1, l2): 
+          curr = l1
+          while l2:
+              l1 = l1.next
+              curr.next = l2
+              l2 = l2.next
+              curr = curr.next
+              curr.next = l1
+              curr = curr.next
+              
+            
+          
+        slow = fast = head
         
-        #step 3: merge lists
-        head1, head2 = head, prev
-        while head2:
-            nextt = head1.next
-            head1.next = head2
-            head1 = head2
-            head2 = nextt
+        while fast.next and fast.next.next:
+          fast = fast.next.next
+          slow = slow.next
+        
+        l2 = reverseList(slow.next)
+        slow.next = None
+        mergeList(head, l2)
+        
+        return head
+        
