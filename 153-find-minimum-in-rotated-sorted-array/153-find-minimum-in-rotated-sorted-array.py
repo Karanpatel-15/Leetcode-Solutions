@@ -5,19 +5,22 @@ class Solution(object):
         :rtype: int
         """
         
-        l, r = 0, len(nums)-1
         res = nums[0]
+        l, r = 0, len(nums)-1
+        
         while l <= r:
-          if nums[l] < nums[r]:
+          if nums[l] <= nums[r]:
             res = min(res, nums[l])
             break
-          
+            
           m = (l+r)//2
           res = min(res, nums[m])
-          
           if nums[l] <= nums[m]:
-            l = m+1
+            l = m + 1  # check right side
           else:
-            r = m-1
-        return res
+            r = m - 1  # check left side
             
+        return res
+          
+          
+          
