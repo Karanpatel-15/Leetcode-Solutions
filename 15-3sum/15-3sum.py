@@ -6,29 +6,32 @@ class Solution(object):
         """
         
         nums.sort()
-        res  = []
+        res = []
         
-        for i in range(0, len(nums)-2):
+        for i in range(len(nums)-2):
           if i != 0 and nums[i] == nums[i-1]:
             continue
-            
+          
+          target = 0 - (nums[i])
+          
           l, r = i+1, len(nums)-1
+          
           while l < r:
-            total = nums[i] + nums[l] + nums[r]
+            total = nums[l] + nums[r]
             
-            if total == 0:
-              res.append([nums[i], nums[l], nums[r]])
-              r-=1
+            if total == target:
+              res.append([nums[i],nums[l],nums[r]])
+            
+            if total <= target:
               l+=1
               while l < r and nums[l] == nums[l-1]:
                 l+=1
-              while l < r and nums[r] == nums[r+1]:
-                r-=1              
-              
-            elif total > 0:
-              r-=1
             else:
-              l+=1
-        
+              r-=1
+              while l < r and nums[r] == nums[r+1]:
+                r-=1
+          
         return res
+            
+          
         
