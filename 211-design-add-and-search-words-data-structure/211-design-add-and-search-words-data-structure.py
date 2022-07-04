@@ -27,11 +27,11 @@ class WordDictionary(object):
         :rtype: bool
         """
         
-        def dfs(curr, i):
+        def dfs(curr, index):
           
-          for i in range(i, len(word)):
+          for i in range(index, len(word)):
             letter = word[i]
-            if word[i] == ".":
+            if letter == ".":
               for c in curr.children.values():
                 if dfs(c, i+1):
                   return True
@@ -40,7 +40,11 @@ class WordDictionary(object):
               return False
             curr = curr.children[letter]
           return curr.completed
+        
         return dfs(self.head, 0)
+            
+              
+          
             
         
 
