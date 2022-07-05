@@ -16,18 +16,16 @@ class Solution(object):
         
         def dfs(root, total, currPath):
           if not root:
-            return
+            return 
           
-          if root.val == total and not root.left and not root.right:
+          if root.val == total and not root.right and not root.left:
             currPath.append(root.val)
-            res.append(currPath[:])
+            res.append(currPath)
             return
           
-          dfs(root.left, total-root.val, currPath + [root.val])
-          dfs(root.right, total-root.val, currPath  + [root.val])
-          return 
-          
+          dfs(root.left, total - root.val, currPath + [root.val])
+          dfs(root.right, total - root.val, currPath + [root.val])
+
         dfs(root, targetSum, [])
         return res
-          
-          
+        
