@@ -22,7 +22,7 @@ class Solution(object):
             if int(s[i:j+1]) <= 255 and (i == j or s[i] != "0"):
               backtracking(j+1, dots+1, currIP + s[i:j+1] + ".")
             else:
-              break
+              return
         
         backtracking(0, 0, "")
         return res
