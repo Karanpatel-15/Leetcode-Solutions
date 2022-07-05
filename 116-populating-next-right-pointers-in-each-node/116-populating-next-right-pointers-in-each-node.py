@@ -1,3 +1,4 @@
+# BFS Solution 
 """
 # Definition for a Node.
 class Node(object):
@@ -15,11 +16,25 @@ class Solution(object):
         :rtype: Node
         """
         
-        if root and root.left and root.right:
-          root.left.next = root.right
-          if root.next:
-             root.right.next = root.next.left
-          self.connect(root.left)
-          self.connect(root.right)
+        if not root:
+          return None
+        
+        queue = [root]
+        
+        while queue:
+          qlen = len(queue)
+          
+          for i in range(qlen):
+            node = queue[i]
+            
+            if i != qlen-1:
+              node.next = queue[i+1]
+              
+            if node.left:
+              queue.append(node.left)
+            if node.right:
+              queue.append(node.right)
+            
+          queue = queue[qlen:]
           
         return root
