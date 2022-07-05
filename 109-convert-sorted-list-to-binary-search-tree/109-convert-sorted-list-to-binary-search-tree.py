@@ -15,23 +15,27 @@ class Solution(object):
         :type head: Optional[ListNode]
         :rtype: Optional[TreeNode]
         """
-        # recursively
+        
         if not head:
-            return 
+          return None
+        
         if not head.next:
-            return TreeNode(head.val)
-        slow, fast = head, head.next.next
+          return TreeNode(head.val)
+        
+        slow = fast = head
+        
         while fast and fast.next:
-            fast = fast.next.next
-            slow = slow.next
-            
-        # tmp points to root
-        tmp = slow.next
-        # cut down the left child
-        
+          fast = fast.next.next
+          temp = slow
+          slow = slow.next
+          
+        temp.next = None
+        temp = slow.next
         slow.next = None
-        root = TreeNode(tmp.val)
-        root.left = self.sortedListToBST(head)
-        root.right = self.sortedListToBST(tmp.next)
-        return root
+        root = TreeNode(slow.val)
         
+        root.left = self.sortedListToBST(head)
+        root.right = self.sortedListToBST(temp)
+        
+        return root
+          
