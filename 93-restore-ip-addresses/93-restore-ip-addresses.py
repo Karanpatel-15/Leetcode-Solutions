@@ -20,7 +20,7 @@ class Solution(object):
           
           for j in range(i, min(i+3, len(s))):
             if int(s[i:j+1]) <= 255 and (i == j or s[i] != "0"):
-              backtracking(j+1, dots+1, currIP + s[i:j+1] + ".")
+                backtracking(j+1, dots+1, currIP + s[i:j+1] + ".")
             else:
               return
         
