@@ -19,9 +19,10 @@ class Solution(object):
             return
           
           for j in range(i, min(i+3, len(s))):
-            if int(s[i:j+1]) <= 255 and (i == j or int(s[i]) != 0):
+            if int(s[i:j+1]) <= 255 and (i == j or s[i] != "0"):
               backtracking(j+1, dots+1, currIP + s[i:j+1] + ".")
-            
+            else:
+              break
         
         backtracking(0, 0, "")
         return res
