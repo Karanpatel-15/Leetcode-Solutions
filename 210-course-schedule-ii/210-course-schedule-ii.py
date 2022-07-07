@@ -7,11 +7,7 @@ class Solution(object):
         """
         
         
-        preReqs = {}
-        
-        for i in range(numCourses):
-          preReqs[i] = []
-          
+        preReqs = {c:[] for c in range(numCourses)}          
         
         for c, p in prerequisites:
           preReqs[c].append(p)
