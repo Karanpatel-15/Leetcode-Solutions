@@ -27,6 +27,7 @@ class Solution(object):
           for p in preReqs[c]:
             if not dfs(p):
               return False
+          visited.remove(c)
           preReqs.pop(c)
           return True
         
