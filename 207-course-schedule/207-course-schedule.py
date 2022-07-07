@@ -7,40 +7,32 @@ class Solution(object):
         """
         
         preReqs = {}
+        
+        for c, p in prerequisites:
+          if c not in preReqs:
+            preReqs[c] = []
+          preReqs[c].append(p)
+          
         visited = set()
         
-        # populate dict
-        for c, p in prerequisites:
-          if c in preReqs:
-            preReqs[c].append(p)
-          else:
-            preReqs[c] = [p]
-
-        def dfs(i):
+        def dfs(c):
           
-          if i in visited:
-            return False
-          
-          if i not in preReqs:
+          if c not in preReqs or preReqs[c] == []:
             return True
           
-          visited.add(i)
+          if c in visited:
+            return False
           
-          for p in preReqs[i]:
+          visited.add(c)
+          for p in preReqs[c]:
             if not dfs(p):
               return False
-          
-          preReqs.pop(i)
-          visited.remove(i)
+          preReqs.pop(c)
           return True
-          
         
-        # go through ever course
+        
         for i in range(numCourses):
           if not dfs(i):
             return False
-
-        # every course preReq is completable
         return True
-            
           
