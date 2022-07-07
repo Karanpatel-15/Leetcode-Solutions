@@ -25,13 +25,12 @@ class Solution(object):
           res += letter
           count += 1
           
-          if prev != None:
+          if prev:
             heapq.heappush(maxHeap, prev)
-          
+            
+          prev = None
           if count != 0:
             prev = [count, letter]
-          else:
-            prev = None
             
         return res
           
