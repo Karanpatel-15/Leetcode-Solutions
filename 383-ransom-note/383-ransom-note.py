@@ -12,7 +12,7 @@ class Solution(object):
         s2 = Counter(magazine)
         
         
-        for l in ransomNote:
+        for l in s1:
           if l not in s2 or s2[l] < s1[l]:
             return False
           
