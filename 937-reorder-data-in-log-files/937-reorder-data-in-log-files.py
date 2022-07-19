@@ -9,11 +9,8 @@ class Solution(object):
         let = []
         
         for l in logs:
-          splitL = l.split(" ", 1)
-          identifier = splitL[0]
-          content = splitL[1] 
           
-          if content[0].isdigit():
+          if l[-1].isdigit():
             dig.append(l)
           else:
             let.append(l)
