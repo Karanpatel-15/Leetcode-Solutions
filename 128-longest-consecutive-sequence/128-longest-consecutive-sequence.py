@@ -6,18 +6,25 @@ class Solution(object):
         """
         
         s = set(nums)
-        res = 0
         
-        for num in nums:
-          if num-1 not in s:
-            count = 1
-            temp = num + 1
-            while temp in s:
-              count += 1
-              s.remove(temp)
-              temp += 1
-            
-            res = max(count, res)
+        mx = 0
         
-        return res
-          
+        for n in nums:
+          curr = n+1
+          total = 1
+          while curr in s:
+            total += 1
+            s.remove(curr)
+            curr+=1
+          curr = n-1
+          while curr in s:
+            total += 1
+            s.remove(curr)
+            curr-=1
+              
+          mx = max(total, mx)
+        
+        
+        return mx
+        
+        
