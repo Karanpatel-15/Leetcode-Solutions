@@ -1,3 +1,4 @@
+from collections import Counter
 import heapq
 
 class Solution(object):
@@ -6,25 +7,22 @@ class Solution(object):
         :type nums: List[int]
         :type k: int
         :rtype: List[int]
+        
         """
-        count = {}
-        buckets = [[] for i in range(len(nums)+1)]
-        for num in nums:
-          if num in count:
-            count[num] += 1
-          else:
-            count[num] = 1
-            
-        for key in count:
-          buckets[count[key]].append(key)
+        
+        counter = Counter(nums)
+        
+        heap = []
+        
+        for key in counter:
+          t = (-counter[key], key)
+          heapq.heappush(heap, t)
           
         res = []
-        for i in range(len(nums), 0, -1):
-          for num in buckets[i]:
-            res.append(num)
-            if len(res) == k:
-              return res
+        for i in range(k):
+          res.append(heapq.heappop(heap)[1])
           
+        return res
         
         
         
