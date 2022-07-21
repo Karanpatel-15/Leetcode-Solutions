@@ -3,22 +3,25 @@ class Solution(object):
         """
         :type strs: List[str]
         :rtype: List[List[str]]
+        
+        
+        
         """
         
-        dict = {}
-        for word in strs:
-          lcount = [0]*26
-          for l in word:
-            lcount[ord(l)-ord('a')] += 1
-                                    
-          wordKey = str(lcount)
-          if wordKey in dict:
-            dict[wordKey].append(word)            
-          else:
-            dict[wordKey] = [word]
+        
+        map = {}
+        
+        for s in strs:
+          counter = [0 for i in range(26)]
+          for l in s:
+            counter[ord(l) - ord("a")] += 1
+          counter = tuple(counter)
+          if counter not in map:
+            map[counter] = []
+          map[counter].append(s)
+        
+        
+        return map.values()
           
-        res = []
-        for keys in dict:
-          res.append(dict[keys])
           
-        return res
+        
