@@ -11,13 +11,15 @@ class Solution(object):
         :rtype: bool
         """
         
-        def dfs(root, leftbound, rightbound):
+        def isValid(root, left, right):
+          
           if not root:
             return True
-          if (leftbound < root.val < rightbound):
-            return dfs(root.left, leftbound, root.val) and dfs(root.right, root.val, rightbound)
-          else:
-            return False
+          
+          if left < root.val < right:
+            return isValid(root.right, root.val, right) and isValid(root.left, left, root.val)
+          
+          return False
         
-        return dfs(root, float("-inf"), float("inf"))
+        return isValid(root, float("-inf"), float("inf"))
         
