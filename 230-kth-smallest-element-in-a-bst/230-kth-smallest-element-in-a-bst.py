@@ -13,18 +13,17 @@ class Solution(object):
         """
         
         stack = []
-        curr = root
-        counter = 0
-        
-        while True:
-          while curr:
-            stack.append(curr)
-            curr=curr.left
+        while root or stack:
+            while root:
+                stack.append(root)
+                root = root.left
+            root = stack.pop()
+            k -= 1
+            if k == 0:
+                return root.val
+            root = root.right
+
+            
           
-          counter += 1
-
-          if counter == k:
-            return stack.pop().val
-
-          curr = stack.pop().right
+        
         
