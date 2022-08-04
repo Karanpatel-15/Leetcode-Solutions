@@ -12,25 +12,28 @@ class Solution(object):
         """
         
         if not root:
-          return None
+          return
         
+        
+        q = [root]
         res = []
-        queue = [root]
         
-        while queue:
-          qlen = len(queue)
-          curr =  []
+        while q:
+          qlen = len(q)
+          temp = []
           
           for i in range(qlen):
-            popped = queue.pop(0)
-            if popped.left != None:
-              queue.append(popped.left)
-            if popped.right != None:
-              queue.append(popped.right)
-            curr.append(popped.val)
-            
-          res.append(curr)
+            node = q.pop(0)
+            if node.left:
+              q.append(node.left)
+            if node.right:
+              q.append(node.right)
+              
+            temp.append(node.val)
+          res.append(temp)
           
         return res
+            
+
         
         
