@@ -4,11 +4,7 @@ class Solution:
         L, R = 0,0
         curSum = nums[0]
         res = 0
-
-        # [2,3,1,2,4,3]
-        #        ^
-        #    ^
-
+        
         while True:
             if curSum >= target:
                 if res == 0:
