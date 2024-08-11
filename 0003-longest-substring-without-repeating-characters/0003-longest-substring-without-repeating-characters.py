@@ -7,11 +7,6 @@ class Solution:
         count = set()
         L, res = 0, 1
 
-
-        # abcabcbb
-        #    ^
-        #  ^
-
         for R in range(len(s)):   
             while s[R] in count:
                 count.remove(s[L])
